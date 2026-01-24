@@ -43,6 +43,27 @@
       max-width: 400px;
       width: 90%;
       box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+      position: relative;
+    }
+
+    .popup-content .close-popup {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      background: none;
+      border: none;
+      font-size: 20px;
+      cursor: pointer;
+      color: #999;
+      padding: 0;
+      line-height: 1;
+      box-shadow: none;
+      width: auto;
+      height: auto;
+    }
+
+    .popup-content .close-popup:hover {
+      color: #333;
     }
 
     .popup-content input[type="email"] {
@@ -96,7 +117,6 @@
       <div class="box padded">
         <div class="kicker">Download</div>
         <h1>Get FluxLinux</h1>
-        <p>Replace the placeholder links with your real ISO + signatures when ready.</p>
 
         <div class="banner banner-warning">
           <div class="icon">
@@ -118,9 +138,10 @@
             <h2>FluxLinux 1.0 (x86_64)</h2>
             <p>Recommended for most systems.</p>
             <p>
-              <a id="download-iso-btn" class="button suggested"
+              <a class="button suggested js-download-btn"
                 href="https://drive.google.com/file/d/1SBTxVQbp9xR7r69FF6ZFtIl-w-EqBMUk/view?usp=drive_link"
-                aria-disabled="true">Download ISO</a>
+                aria-disabled="true">Download Main ISO</a>
+              <a class="button js-download-btn" href="https://drive.google.com/file/d/12QtNX-V-f698jHF9pfGmXx-4Z6pmCgUx/view?usp=sharing" aria-disabled="true">Download Budgie Version</a>
               <a class="button" href="/os/download/SHA256SUMS" aria-disabled="true">Signature</a>
             </p>
           </div>
@@ -145,6 +166,7 @@
   <!-- Newsletter Popup -->
   <div id="newsletter-popup" class="popup-overlay">
     <div class="popup-content">
+      <button id="close-popup" class="close-popup" aria-label="Close">&times;</button>
       <h2>Subscribe to our Newsletter</h2>
       <p>Stay updated with FluxLinux news and releases.</p>
       <input type="email" id="newsletter-email" placeholder="Enter your email">
@@ -181,23 +203,37 @@
 
   <script src="/assets/js/site.js"></script>
   <script>
-    const downloadBtn = document.getElementById('download-iso-btn');
+    const downloadBtns = document.querySelectorAll('.js-download-btn');
     const popup = document.getElementById('newsletter-popup');
     const skipDownload = document.getElementById('skip-download');
     const subscribeBtn = document.getElementById('subscribe-btn');
+    const closePopupBtn = document.getElementById('close-popup');
     const emailInput = document.getElementById('newsletter-email');
+    let targetDownloadUrl = '';
 
     // Show newsletter popup
-    downloadBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      popup.style.display = 'flex';
+    downloadBtns.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        targetDownloadUrl = btn.getAttribute('href');
+        popup.style.display = 'flex';
+      });
     });
 
     // Skip to download
     skipDownload.addEventListener('click', (e) => {
       e.preventDefault();
       popup.style.display = 'none';
-      window.location.href = downloadBtn.href;
+      if (targetDownloadUrl) {
+        window.location.href = targetDownloadUrl;
+      }
+    });
+
+    // Close popup without action
+    closePopupBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      popup.style.display = 'none';
+      targetDownloadUrl = ''; // Clear target to avoid accidental redirect if logic changes
     });
 
     // Subscribe button
@@ -214,20 +250,17 @@
       }).then(() => {
         alert('Subscribed successfully!');
         popup.style.display = 'none';
-        window.location.href = downloadBtn.href;
+        if (targetDownloadUrl) {
+          window.location.href = targetDownloadUrl;
+        }
       }).catch(() => {
         alert('Subscription failed. Try again.');
       });
     });
 
-    // Optional: Track download click
-    downloadBtn.addEventListener('click', () => {
-      fetch('/api/track-download', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ file_name: 'fluxlinux-iso' })
-      }).catch(console.error);
-    });
+    // Optional: Track download click (if needed, simplified for now or could attach to actual redirect)
+    // For now we removed the direct click tracking since we interrupt with popup, 
+    // ideally it should be tracked when redirection happens.
   </script>
 </body>
 
