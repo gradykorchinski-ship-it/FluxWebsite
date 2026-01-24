@@ -1,0 +1,42 @@
+.page-hero{
+  padding: 24px;
+}
+
+.page-hero-inner{
+  padding: 30px 28px 18px;
+}
+
+.page-hero h1{
+  font-size: clamp(30px, 3.2vw, 44px);
+  line-height: 1.1;
+}
+
+.page-grid{
+  display:grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 24px;
+}
+
+.span-7{ grid-column: span 7; }
+.span-5{ grid-column: span 5; }
+
+@media (max-width: 940px){
+  .span-7, .span-5{ grid-column: span 12; }
+}
+
+.list{
+  margin: 0;
+  padding-left: 18px;
+  color: rgba(11,18,32,.70);
+}
+
+.code{
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 13px;
+  background: rgba(2,6,23,.06);
+  border: 1px solid rgba(15,23,42,.10);
+  border-radius: 14px;
+  padding: 12px;
+  overflow:auto;
+  color: rgba(11,18,32,.90);
+}

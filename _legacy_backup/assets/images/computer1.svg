@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700" role="img" aria-label="Monitor displaying FluxLinux desktop">
+  <defs>
+    <!-- Background glow -->
+    <radialGradient id="bgGlow" cx="30%" cy="10%" r="90%">
+      <stop offset="0%" stop-color="#1677ff" stop-opacity="0.20"></stop>
+      <stop offset="45%" stop-color="#7c3aed" stop-opacity="0.12"></stop>
+      <stop offset="100%" stop-color="#0b1220" stop-opacity="0"></stop>
+    </radialGradient>
+
+    <!-- Screen wallpaper -->
+    <linearGradient id="wall" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0ea5e9"></stop>
+      <stop offset="45%" stop-color="#2563eb"></stop>
+      <stop offset="100%" stop-color="#7c3aed"></stop>
+    </linearGradient>
+
+    <!-- Soft shadow -->
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="160%">
+      <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#020617" flood-opacity="0.25"></feDropShadow>
+    </filter>
+
+    <filter id="shadowSoft" x="-20%" y="-20%" width="140%" height="160%">
+      <feDropShadow dx="0" dy="10" stdDeviation="10" flood-color="#020617" flood-opacity="0.18"></feDropShadow>
+    </filter>
+
+    <!-- Bezel sheen -->
+    <linearGradient id="bezel" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#111827"></stop>
+      <stop offset="60%" stop-color="#0b1220"></stop>
+      <stop offset="100%" stop-color="#060a12"></stop>
+    </linearGradient>
+
+    <!-- Glass highlight -->
+    <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.18"></stop>
+      <stop offset="25%" stop-color="#ffffff" stop-opacity="0.04"></stop>
+      <stop offset="55%" stop-color="#ffffff" stop-opacity="0.00"></stop>
+    </linearGradient>
+
+    <!-- Window gradient -->
+    <linearGradient id="win" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.95"></stop>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.88"></stop>
+    </linearGradient>
+
+    <!-- Tiny blur for wallpaper shapes -->
+    <filter id="blur8" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8"></feGaussianBlur>
+    </filter>
+  </defs>
+
+  <!-- Page background (transparent-friendly) -->
+  <rect x="0" y="0" width="1200" height="700" fill="#f5f7fb"></rect>
+  <rect x="0" y="0" width="1200" height="700" fill="url(#bgGlow)"></rect>
+
+  <!-- Monitor group -->
+  <g filter="url(#shadow)">
+    <!-- Bezel -->
+    <rect x="160" y="70" width="880" height="520" rx="34" fill="url(#bezel)"></rect>
+
+    <!-- Inner frame -->
+    <rect x="190" y="100" width="820" height="460" rx="26" fill="#0a0f1c"></rect>
+
+    <!-- Screen content -->
+    <g>
+      <rect x="200" y="110" width="800" height="440" rx="22" fill="url(#wall)"></rect>
+
+      <!-- Wallpaper blobs -->
+      <g filter="url(#blur8)" opacity="0.55">
+        <circle cx="350" cy="210" r="120" fill="#ffffff"></circle>
+        <circle cx="520" cy="180" r="90" fill="#93c5fd"></circle>
+        <circle cx="860" cy="240" r="150" fill="#a78bfa"></circle>
+        <circle cx="760" cy="390" r="120" fill="#38bdf8"></circle>
+      </g>
+
+      <!-- Top bar -->
+      <rect x="200" y="110" width="800" height="44" rx="22" fill="#0b1220" opacity="0.55"></rect>
+      <circle cx="232" cy="132" r="6" fill="#ffffff" opacity="0.85"></circle>
+      <circle cx="252" cy="132" r="6" fill="#ffffff" opacity="0.55"></circle>
+      <circle cx="272" cy="132" r="6" fill="#ffffff" opacity="0.35"></circle>
+
+      <!-- Top bar title -->
+      <text x="600" y="137" text-anchor="middle" font-family="Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif" font-size="16" font-weight="700" fill="#ffffff" opacity="0.88">
+        Flux
+</text></g></g></svg>

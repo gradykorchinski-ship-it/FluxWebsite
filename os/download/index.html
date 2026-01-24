@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="/assets/images/logo.svg" sizes="any">
+  <link rel="shortcut icon" href="/assets/images/logo.svg">
+  <link rel="apple-touch-icon" href="/assets/images/logo.svg">
+  <meta name="msapplication-TileImage" content="/assets/images/logo.svg">
+  <title>FluxLinux — Download</title>
+  <meta name="description" content="Download FluxLinux and verify checksums.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Space+Grotesk:wght@500;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/common.css">
+  <link rel="stylesheet" href="/assets/css/page.css">
+
+  <style>
+    /* Popup overlay */
+    .popup-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    .popup-content {
+      background: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      text-align: center;
+      max-width: 400px;
+      width: 90%;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    }
+
+    .popup-content input[type="email"] {
+      width: 80%;
+      padding: 8px 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    .popup-content button {
+      padding: 10px 20px;
+      background: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .popup-content a {
+      display: inline-block;
+      margin-top: 10px;
+      font-size: 14px;
+      color: #007bff;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <nav id="main">
+      <div class="container">
+        <a href="/" class="logotype"><img src="/assets/images/logo.svg" alt="" aria-hidden="true"><span>FluxLinux</span></a>
+        <ul class="menu" id="main-menu">
+          <li><a href="/os/">FluxLinux</a></li>
+          <li><a href="/computers/">Computers</a></li>
+          <li><a href="/help/">Help</a></li>
+          <li><a href="/blog/">Blog</a></li>
+        </ul>
+        <div class="responsive" id="responsive-icon">
+          <a href="javascript:void(0);" onclick="responsiveMenu()" class="button"><strong>&#9776;</strong> Menu</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="section">
+    <div class="container">
+      <div class="box padded">
+        <div class="kicker">Download</div>
+        <h1>Get FluxLinux</h1>
+        <p>Replace the placeholder links with your real ISO + signatures when ready.</p>
+
+        <div class="banner banner-warning">
+          <div class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+              <line x1="12" y1="9" x2="12" y2="13"></line>
+              <line x1="12" y1="17" x2="12.01" y2="17"></line>
+            </svg>
+          </div>
+          <div>
+            <strong>Beta Release</strong>
+            FluxLinux is built on Zorin OS. You might still encounter some Zorin OS branding or references while we work on a complete rebrand. Please report issues on our tracker.
+          </div>
+        </div>
+
+        <div class="row" style="align-items:center; margin-top:10px;">
+          <div class="col-6">
+            <h2>FluxLinux 1.0 (x86_64)</h2>
+            <p>Recommended for most systems.</p>
+            <p>
+              <a id="download-iso-btn" class="button suggested"
+                href="https://drive.google.com/file/d/1SBTxVQbp9xR7r69FF6ZFtIl-w-EqBMUk/view?usp=drive_link"
+                aria-disabled="true">Download ISO</a>
+              <a class="button" href="/os/download/SHA256SUMS" aria-disabled="true">Signature</a>
+            </p>
+          </div>
+          <div class="col-6">
+            <h2>Verify</h2>
+            <div class="code">
+              sha256sum FluxLinux-24.04.3-2026.01.21-desktop-amd64.iso<br>
+              # compare with SHA256SUMS<br><br>
+              gpg --verify SHA256SUMS.sig SHA256SUMS
+            </div>
+            <div style="margin-top: 16px;">
+              <p style="margin-bottom: 8px; font-weight: 600; font-size: 14px;">Safety Verification:</p>
+              <img src="/assets/images/screenshot.png" alt="VirusTotal Scan Result" class="rounded"
+                style="border: 1px solid var(--border);">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Newsletter Popup -->
+  <div id="newsletter-popup" class="popup-overlay">
+    <div class="popup-content">
+      <h2>Subscribe to our Newsletter</h2>
+      <p>Stay updated with FluxLinux news and releases.</p>
+      <input type="email" id="newsletter-email" placeholder="Enter your email">
+      <button id="subscribe-btn">Subscribe</button>
+      <p><a href="#" id="skip-download">Skip to Download</a></p>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">
+      <div class="social" aria-label="Social links" style="justify-content: center;">
+        <a href="https://github.com/gradykorchinski-ship-it/FluxWebsite" aria-label="GitHub" title="GitHub"
+          target="_blank" rel="noopener noreferrer">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"
+            aria-hidden="true" focusable="false">
+            <path
+              d="M12 .5C5.73.5.5 5.73.5 12.02c0 5.13 3.32 9.48 7.94 11.01.58.11.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.23.7-3.91-1.56-3.91-1.56-.53-1.36-1.3-1.72-1.3-1.72-1.06-.73.08-.72.08-.72 1.17.08 1.79 1.2 1.79 1.2 1.04 1.78 2.73 1.27 3.4.97.11-.75.41-1.27.75-1.56-2.58-.29-5.29-1.29-5.29-5.74 0-1.27.45-2.31 1.19-3.13-.12-.29-.52-1.47.11-3.06 0 0 .97-.31 3.18 1.19.92-.26 1.9-.39 2.88-.39.98 0 1.96.13 2.88.39 2.21-1.5 3.18-1.19 3.18-1.19.63 1.59.23 2.77.11 3.06.74.82 1.19 1.86 1.19 3.13 0 4.46-2.72 5.45-5.31 5.73.42.36.79 1.08.79 2.18 0 1.57-.01 2.83-.01 3.21 0 .31.21.68.8.56C20.69 21.48 24 17.13 24 12.02 24 5.73 18.27.5 12 .5z" />
+          </svg>
+          <span class="sr-only">GitHub</span>
+        </a>
+        <a href="https://x.com/fluxlinuxdistro" aria-label="X" title="X" target="_blank" rel="noopener noreferrer">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"
+            aria-hidden="true" focusable="false">
+            <path
+              d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+          </svg>
+          <span class="sr-only">X</span>
+        </a>
+      </div>
+      <div class="legal">© 2026 FluxLinux Project • <a href="/legal/terms/">Terms</a> • <a
+          href="/legal/privacy/">Privacy</a></div>
+    </div>
+  </footer>
+
+  <script src="/assets/js/site.js"></script>
+  <script>
+    const downloadBtn = document.getElementById('download-iso-btn');
+    const popup = document.getElementById('newsletter-popup');
+    const skipDownload = document.getElementById('skip-download');
+    const subscribeBtn = document.getElementById('subscribe-btn');
+    const emailInput = document.getElementById('newsletter-email');
+
+    // Show newsletter popup
+    downloadBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      popup.style.display = 'flex';
+    });
+
+    // Skip to download
+    skipDownload.addEventListener('click', (e) => {
+      e.preventDefault();
+      popup.style.display = 'none';
+      window.location.href = downloadBtn.href;
+    });
+
+    // Subscribe button
+    subscribeBtn.addEventListener('click', () => {
+      const email = emailInput.value.trim();
+      if (!email) {
+        alert('Please enter a valid email.');
+        return;
+      }
+      fetch('/api/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email })
+      }).then(() => {
+        alert('Subscribed successfully!');
+        popup.style.display = 'none';
+        window.location.href = downloadBtn.href;
+      }).catch(() => {
+        alert('Subscription failed. Try again.');
+      });
+    });
+
+    // Optional: Track download click
+    downloadBtn.addEventListener('click', () => {
+      fetch('/api/track-download', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ file_name: 'fluxlinux-iso' })
+      }).catch(console.error);
+    });
+  </script>
+</body>
+
+</html>
