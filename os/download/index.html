@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en">
 
 <head>
   <meta charset="UTF-8">
@@ -12,23 +12,220 @@
   <title>FluxLinux — Download</title>
   <meta name="description" content="Download FluxLinux and verify checksums.">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Space+Grotesk:wght@500;700&display=swap"
-    rel="stylesheet">
-  <link rel="stylesheet" href="/assets/css/common.css">
-  <link rel="stylesheet" href="/assets/css/page.css">
-
   <style>
-    /* Popup overlay */
+    /* Arch Linux visual system (sourced from archweb.css + download page HTML) */
+    * {
+      margin: 0;
+      padding: 0;
+      line-height: 1.4;
+    }
+
+    body {
+      min-width: 650px;
+      background: #f6f9fc;
+      color: #222;
+      font: normal 100% sans-serif;
+      text-align: center;
+    }
+
+    p {
+      margin: .33em 0 1em;
+    }
+
+    ol,
+    ul {
+      margin-bottom: 1em;
+      padding-left: 2em;
+    }
+
+    ul {
+      list-style: square;
+    }
+
+    code {
+      font-family: monospace, monospace;
+      background: #ffd;
+      padding: 0.15em 0.25em;
+    }
+
+    img {
+      border: 0;
+    }
+
+    #archnavbar {
+      min-height: 40px !important;
+      padding: 10px 15px !important;
+      background: #333 !important;
+      border-bottom: 5px #08c solid !important;
+    }
+
+    #archnavbarlogo {
+      float: left !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      height: 40px !important;
+      width: 190px !important;
+      background: url('/assets/images/logo.svg') no-repeat left center !important;
+      background-size: 170px 40px !important;
+    }
+
+    #archnavbarlogo h1 {
+      margin: 0 !important;
+      padding: 0 !important;
+      text-indent: -9999px !important;
+    }
+
+    #archnavbarlogo a {
+      display: block !important;
+      height: 40px !important;
+      width: 190px !important;
+    }
+
+    #archnavbarlist {
+      display: block !important;
+      list-style: none !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      font-size: 0px !important;
+      text-align: right !important;
+    }
+
+    #archnavbarlist li {
+      display: inline-block !important;
+      font-size: 14px !important;
+      font-family: sans-serif !important;
+      line-height: 14px !important;
+      padding: 14px 15px 0px !important;
+    }
+
+    #archnavbarlist li a {
+      color: #999;
+      font-weight: bold !important;
+      text-decoration: none !important;
+    }
+
+    #archnavbarlist li a:hover {
+      color: white !important;
+      text-decoration: underline !important;
+    }
+
+    #archnavbar.anb-download ul li#anb-download a {
+      color: white !important;
+    }
+
+    #content {
+      width: 95%;
+      margin: 0 auto;
+      text-align: left;
+      font-size: 0.812em;
+    }
+
+    div.box {
+      margin-bottom: 1.5em;
+      padding: 0.65em;
+      background: #ecf2f5;
+      border: 1px solid #bcd;
+    }
+
+    h2 {
+      font-size: 1.5em;
+      margin-bottom: 0.5em;
+      border-bottom: 1px solid #888;
+    }
+
+    h3 {
+      font-size: 1.25em;
+      margin-top: .5em;
+      border-bottom: 1px dotted #bbb;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    a:link,
+    a:visited {
+      color: #08c;
+    }
+
+    a:hover,
+    a:focus,
+    a:visited:hover {
+      color: #08c;
+      text-decoration: underline;
+    }
+
+    #archdev-navbar {
+      margin: 1.5em 0;
+    }
+
+    #archdev-navbar ul {
+      list-style: none;
+      margin: -0.5em 0;
+      padding: 0;
+    }
+
+    #archdev-navbar li {
+      display: inline;
+      margin: 0;
+      padding: 0;
+      font-size: 0.9em;
+    }
+
+    #archdev-navbar li a {
+      padding: 0 0.5em;
+      color: #07b;
+    }
+
+    #footer {
+      clear: both;
+      margin: 2em 0 1em;
+    }
+
+    #footer p {
+      margin: 0;
+      text-align: center;
+      font-size: 0.85em;
+    }
+
+    #arch-downloads h3 {
+      border-bottom: 1px dotted #bbb;
+    }
+
+    .banner {
+      margin: 0 0 1em;
+      padding: 0.5em 0.65em;
+      background: #ffd;
+      border: 1px solid #e6c300;
+    }
+
+    .banner strong {
+      display: inline-block;
+      margin-right: 0.35em;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 0.15em 0.6em;
+      border: 1px solid #08c;
+      background: #fff;
+      color: #08c;
+      font-weight: bold;
+      margin-right: 0.4em;
+    }
+
+    .button:hover {
+      background: #f3f8ff;
+      text-decoration: none;
+    }
+
     .popup-overlay {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.6);
+      background: rgba(0, 0, 0, 0.55);
       display: none;
       justify-content: center;
       align-items: center;
@@ -37,133 +234,107 @@
 
     .popup-content {
       background: #fff;
-      padding: 30px;
-      border-radius: 12px;
-      text-align: center;
-      max-width: 400px;
-      width: 90%;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+      padding: 20px;
+      border: 1px solid #bcd;
+      width: 320px;
+      text-align: left;
       position: relative;
+    }
+
+    .popup-content h2 {
+      margin-top: 0;
+      border-bottom: 1px solid #888;
+    }
+
+    .popup-content input[type="email"] {
+      width: 95%;
+      padding: 4px;
+      border: 1px solid #bbb;
+    }
+
+    .popup-content button {
+      margin-top: 8px;
+      padding: 3px 8px;
+      border: 1px solid #08c;
+      background: #fff;
+      color: #08c;
+      font-weight: bold;
+      cursor: pointer;
     }
 
     .popup-content .close-popup {
       position: absolute;
-      top: 10px;
-      right: 15px;
-      background: none;
+      top: 8px;
+      right: 10px;
       border: none;
-      font-size: 20px;
-      cursor: pointer;
-      color: #999;
-      padding: 0;
-      line-height: 1;
-      box-shadow: none;
-      width: auto;
-      height: auto;
-    }
-
-    .popup-content .close-popup:hover {
-      color: #333;
-    }
-
-    .popup-content input[type="email"] {
-      width: 80%;
-      padding: 8px 10px;
-      margin: 10px 0;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-    }
-
-    .popup-content button {
-      padding: 10px 20px;
-      background: #007bff;
-      color: #fff;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-
-    .popup-content a {
-      display: inline-block;
-      margin-top: 10px;
-      font-size: 14px;
-      color: #007bff;
-      text-decoration: underline;
+      background: transparent;
+      color: #666;
+      font-size: 18px;
       cursor: pointer;
     }
   </style>
 </head>
 
 <body>
-  <header>
-    <nav id="main">
-      <div class="container">
-        <a href="/" class="logotype"><img src="/assets/images/logo.svg" alt="" aria-hidden="true"><span>FluxLinux</span></a>
-        <ul class="menu" id="main-menu">
-          <li><a href="/os/">FluxLinux</a></li>
-          <li><a href="/computers/">Computers</a></li>
-          <li><a href="/help/">Help</a></li>
-          <li><a href="/blog/">Blog</a></li>
-        </ul>
-        <div class="responsive" id="responsive-icon">
-          <a href="javascript:void(0);" onclick="responsiveMenu()" class="button"><strong>&#9776;</strong> Menu</a>
-        </div>
-      </div>
-    </nav>
-  </header>
-
-  <main class="section">
-    <div class="container">
-      <div class="box padded">
-        <div class="kicker">Download</div>
-        <h1>Get FluxLinux</h1>
-
-        <div class="banner banner-warning">
-          <div class="icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
-              <line x1="12" y1="9" x2="12" y2="13"></line>
-              <line x1="12" y1="17" x2="12.01" y2="17"></line>
-            </svg>
-          </div>
-          <div>
-            <strong>Beta Release</strong>
-            FluxLinux is built on Zorin OS. You might still encounter some Zorin OS branding or references while we work on a complete rebrand. Please report issues on our tracker.
-          </div>
-        </div>
-
-        <div class="row" style="align-items:center; margin-top:10px;">
-          <div class="col-6">
-            <h2>FluxLinux 1.2 (x86_64)</h2>
-            <p>Recommended for most systems.</p>
-            <p>
-              <a class="button suggested js-download-btn"
-                href="https://drive.google.com/file/d/1SBTxVQbp9xR7r69FF6ZFtIl-w-EqBMUk/view?usp=drive_link"
-                aria-disabled="true">Download Main ISO</a>
-              <a class="button js-download-btn" href="https://drive.google.com/file/d/12QtNX-V-f698jHF9pfGmXx-4Z6pmCgUx/view?usp=sharing" aria-disabled="true">Download Budgie Version</a>
-              <a class="button" href="/os/download/SHA256SUMS" aria-disabled="true">Signature</a>
-            </p>
-          </div>
-          <div class="col-6">
-            <h2>Verify</h2>
-            <div class="code">
-              sha256sum FluxLinux-24.04.3-2026.01.21-desktop-amd64.iso<br>
-              # compare with SHA256SUMS<br><br>
-              gpg --verify SHA256SUMS.sig SHA256SUMS
-            </div>
-            <div style="margin-top: 16px;">
-              <p style="margin-bottom: 8px; font-weight: 600; font-size: 14px;">Safety Verification:</p>
-              <img src="/assets/images/screenshot.png" alt="VirusTotal Scan Result" class="rounded"
-                style="border: 1px solid var(--border);">
-            </div>
-          </div>
-        </div>
-      </div>
+  <div id="archnavbar" class="anb-download">
+    <div id="archnavbarlogo">
+      <h1><a href="/" title="Return to the main page">FluxLinux</a></h1>
     </div>
-  </main>
+    <div id="archnavbarmenu">
+      <ul id="archnavbarlist">
+        <li id="anb-home"><a href="/" title="FluxLinux news, downloads, and more">Home</a></li>
+        <li id="anb-packages"><a href="/os/" title="FluxLinux OS">FluxLinux</a></li>
+        <li id="anb-forums"><a href="/help/" title="Help">Help</a></li>
+        <li id="anb-wiki"><a href="/blog/" title="Blog">Blog</a></li>
+        <li id="anb-download"><a href="/os/download/" title="Get FluxLinux">Download</a></li>
+      </ul>
+    </div>
+  </div>
 
-  <!-- Newsletter Popup -->
+  <div id="content">
+    <div id="archdev-navbar"></div>
+
+    <div id="arch-downloads" class="box">
+      <h2>FluxLinux Downloads</h2>
+
+      <h3>Release Info</h3>
+      <p>The image can be burned to a DVD, mounted as an ISO file, or be directly written to a USB flash drive.
+        It is intended for new installations only; an existing FluxLinux system can always be updated normally.</p>
+      <p>Images for installing FluxLinux can be downloaded via direct download below.</p>
+
+      <ul>
+        <li><strong>Current Release:</strong> 1.2</li>
+        <li><strong>Included Kernel:</strong> 6.8.x</li>
+        <li><strong>ISO Size:</strong> 2.8&nbsp;GB</li>
+        <li><a href="/help/">Installation Guide</a></li>
+      </ul>
+
+      <div class="banner">
+        <strong>Beta Release</strong> FluxLinux is built on Zorin OS. You might still encounter some Zorin OS branding or
+        references while we work on a complete rebrand. Please report issues on our tracker.
+      </div>
+
+      <h3>Direct Downloads</h3>
+      <p>
+        <a class="button js-download-btn"
+          href="https://drive.google.com/file/d/1SBTxVQbp9xR7r69FF6ZFtIl-w-EqBMUk/view?usp=drive_link"
+          aria-disabled="true">Download Main ISO</a>
+        <a class="button js-download-btn"
+          href="https://drive.google.com/file/d/12QtNX-V-f698jHF9pfGmXx-4Z6pmCgUx/view?usp=sharing"
+          aria-disabled="true">Download Budgie Version</a>
+        <a class="button" href="/os/download/SHA256SUMS" aria-disabled="true">Signature</a>
+      </p>
+
+      <h3>Verify</h3>
+      <p>To verify the ISO:</p>
+      <p><code>sha256sum FluxLinux-24.04.3-2026.01.21-desktop-amd64.iso</code></p>
+      <p><code>gpg --verify SHA256SUMS.sig SHA256SUMS</code></p>
+
+      <p><strong>Safety Verification:</strong></p>
+      <p><img src="/assets/images/screenshot.png" alt="VirusTotal Scan Result" width="520"></p>
+    </div>
+  </div>
+
   <div id="newsletter-popup" class="popup-overlay">
     <div class="popup-content">
       <button id="close-popup" class="close-popup" aria-label="Close">&times;</button>
@@ -175,31 +346,9 @@
     </div>
   </div>
 
-  <footer>
-    <div class="container">
-      <div class="social" aria-label="Social links" style="justify-content: center;">
-        <a href="https://github.com/gradykorchinski-ship-it/FluxWebsite" aria-label="GitHub" title="GitHub"
-          target="_blank" rel="noopener noreferrer">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"
-            aria-hidden="true" focusable="false">
-            <path
-              d="M12 .5C5.73.5.5 5.73.5 12.02c0 5.13 3.32 9.48 7.94 11.01.58.11.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.23.7-3.91-1.56-3.91-1.56-.53-1.36-1.3-1.72-1.3-1.72-1.06-.73.08-.72.08-.72 1.17.08 1.79 1.2 1.79 1.2 1.04 1.78 2.73 1.27 3.4.97.11-.75.41-1.27.75-1.56-2.58-.29-5.29-1.29-5.29-5.74 0-1.27.45-2.31 1.19-3.13-.12-.29-.52-1.47.11-3.06 0 0 .97-.31 3.18 1.19.92-.26 1.9-.39 2.88-.39.98 0 1.96.13 2.88.39 2.21-1.5 3.18-1.19 3.18-1.19.63 1.59.23 2.77.11 3.06.74.82 1.19 1.86 1.19 3.13 0 4.46-2.72 5.45-5.31 5.73.42.36.79 1.08.79 2.18 0 1.57-.01 2.83-.01 3.21 0 .31.21.68.8.56C20.69 21.48 24 17.13 24 12.02 24 5.73 18.27.5 12 .5z" />
-          </svg>
-          <span class="sr-only">GitHub</span>
-        </a>
-        <a href="https://x.com/fluxlinuxdistro" aria-label="X" title="X" target="_blank" rel="noopener noreferrer">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"
-            aria-hidden="true" focusable="false">
-            <path
-              d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-          </svg>
-          <span class="sr-only">X</span>
-        </a>
-      </div>
-      <div class="legal">© 2026 FluxLinux Project • <a href="/legal/terms/">Terms</a> • <a
-          href="/legal/privacy/">Privacy</a></div>
-    </div>
-  </footer>
+  <div id="footer">
+    <p>© 2026 FluxLinux Project • <a href="/legal/terms/">Terms</a> • <a href="/legal/privacy/">Privacy</a></p>
+  </div>
 
   <script src="/assets/js/site.js"></script>
   <script>
@@ -211,7 +360,6 @@
     const emailInput = document.getElementById('newsletter-email');
     let targetDownloadUrl = '';
 
-    // Show newsletter popup
     downloadBtns.forEach(btn => {
       btn.addEventListener('click', (e) => {
         e.preventDefault();
@@ -220,7 +368,6 @@
       });
     });
 
-    // Skip to download
     skipDownload.addEventListener('click', (e) => {
       e.preventDefault();
       popup.style.display = 'none';
@@ -229,14 +376,12 @@
       }
     });
 
-    // Close popup without action
     closePopupBtn.addEventListener('click', (e) => {
       e.preventDefault();
       popup.style.display = 'none';
-      targetDownloadUrl = ''; // Clear target to avoid accidental redirect if logic changes
+      targetDownloadUrl = '';
     });
 
-    // Subscribe button
     subscribeBtn.addEventListener('click', () => {
       const email = emailInput.value.trim();
       if (!email) {
@@ -257,10 +402,6 @@
         alert('Subscription failed. Try again.');
       });
     });
-
-    // Optional: Track download click (if needed, simplified for now or could attach to actual redirect)
-    // For now we removed the direct click tracking since we interrupt with popup, 
-    // ideally it should be tracked when redirection happens.
   </script>
 </body>
 

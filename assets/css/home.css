@@ -1,73 +1,103 @@
-.hero{
-  padding: 22px;
+/* Home page classic layout */
+#content {
+  width: 980px;
+  margin: 0 auto;
+  text-align: left;
+  display: grid;
+  grid-template-columns: 1fr 260px;
+  column-gap: 20px;
 }
 
-.hero-inner{
-  padding: 34px 28px 10px;
-}
-
-.hero h1{
-  font-size: clamp(34px, 4vw, 52px);
-  line-height: 1.05;
-}
-
-.hero .cta{
-  display:flex;
-  gap: 14px;
-  justify-content:center;
-  flex-wrap: wrap;
-  margin-top: 18px;
-}
-
-.hero figure{
+#content .container {
+  width: auto;
   margin: 0;
-  padding: 0 18px 22px;
 }
 
-.hero img{
+#content > .section {
+  grid-column: 1;
+}
+
+#content > #other-products,
+#content > #other-pages {
+  grid-column: 2;
+}
+
+#content > #other-products {
+  margin-top: 0;
+}
+
+#content > #other-pages {
+  margin-top: 0;
+}
+
+#content #other-products .col-6,
+#content #other-pages .col-6 {
+  float: none;
   width: 100%;
-  border-radius: 18px;
 }
 
-.card-figure{
-  padding: 0 18px 18px;
+.hero {
+  padding: 8px;
 }
 
-.card-figure img{
+.hero-inner {
+  padding: 8px;
+}
+
+.hero h1 {
+  font-size: 24px;
+  line-height: 1.2;
+}
+
+.hero .cta {
+  margin-top: 8px;
+}
+
+.hero figure {
+  margin: 0;
+  padding: 8px 0 0;
+}
+
+.hero img {
+  border-radius: 0;
+}
+
+.card-figure {
+  padding: 8px 0 0;
+}
+
+.card-figure img {
+  border-radius: 0;
+}
+
+.card-figure--double {
+  display: block;
+  padding: 8px 0 0;
+}
+
+.card-figure--double img {
   width: 100%;
-  border-radius: 18px;
+  max-width: 100%;
+  border-radius: 0;
 }
 
-/* Two-image card figure: side-by-side on wide screens, stacked on narrow screens */
-.card-figure--double{
-  display:flex;
-  gap:12px;
-  justify-content:center;
-  align-items:center;
-  padding: 0 18px 18px;
-}
-.card-figure--double img{
-  width: calc(50% - 6px);
-  max-width: 260px;
-  height: auto;
-  border-radius: 12px;
+.white {
+  background: #fff;
 }
 
-@media (max-width: 720px){
-  .card-figure--double{
-    flex-direction:column;
+.mini {
+  font-size: 12px;
+  color: #555;
+}
+
+@media (max-width: 1020px) {
+  #content {
+    width: 95%;
+    display: block;
   }
-  .card-figure--double img{
-    width:100%;
-    max-width:100%;
+
+  #content > #other-products,
+  #content > #other-pages {
+    grid-column: auto;
   }
-}
-
-.white{
-  background: rgba(255,255,255,.9);
-}
-
-.mini{
-  font-size: 14px;
-  color: rgba(11,18,32,.62);
 }
