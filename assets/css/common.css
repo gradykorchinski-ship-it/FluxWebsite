@@ -141,53 +141,62 @@ header {
   position: static;
 }
 
-nav#main {
-  background: #eee;
-  border-bottom: 1px solid #bbb;
+/* Arch-style header (used on all pages) */
+#archnavbar {
+  min-height: 40px;
+  padding: 10px 15px;
+  background: #333;
+  border-bottom: 5px #08c solid;
 }
 
-nav#main .container {
-  padding: 10px 0;
-}
-
-.logotype {
+#archnavbarlogo {
   float: left;
-  display: inline-block;
-  font-weight: bold;
-  color: #222;
+  margin: 0;
+  padding: 0;
+  height: 40px;
+  width: 190px;
+  background: url('/assets/images/logo.svg') no-repeat left center;
+  background-size: 170px 40px;
 }
 
-.logotype img {
-  width: 24px;
-  height: 24px;
-  display: inline-block;
-  vertical-align: middle;
-  margin-right: 6px;
+#archnavbarlogo h1 {
+  margin: 0;
+  padding: 0;
+  text-indent: -9999px;
 }
 
-.logotype span {
-  vertical-align: middle;
+#archnavbarlogo a {
+  display: block;
+  height: 40px;
+  width: 190px;
 }
 
-ul.menu {
+#archnavbarlist {
+  display: block;
   list-style: none;
   margin: 0;
   padding: 0;
-  float: right;
+  font-size: 0;
+  text-align: right;
 }
 
-ul.menu li {
-  display: inline;
-  margin-left: 14px;
+#archnavbarlist li {
+  display: inline-block;
+  font-size: 14px;
+  font-family: sans-serif;
+  line-height: 14px;
+  padding: 14px 15px 0;
 }
 
-ul.menu a {
-  color: #333;
-  font-weight: normal;
+#archnavbarlist li a {
+  color: #999;
+  font-weight: bold;
+  text-decoration: none;
 }
 
-.responsive {
-  display: none;
+#archnavbarlist li a:hover {
+  color: #fff;
+  text-decoration: underline;
 }
 
 /* Boxes */
