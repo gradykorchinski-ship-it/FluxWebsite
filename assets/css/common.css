@@ -383,3 +383,52 @@ input, select, textarea {
     margin: 0 10px 0 0;
   }
 }
+
+/* Donation Toast */
+.toast-container {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  z-index: 10000;
+  width: 300px;
+  background: #fff;
+  border: 1px solid #08c;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  display: none; /* Hidden by default, shown by JS */
+  text-align: left;
+}
+
+.toast-content {
+  padding: 15px;
+  position: relative;
+}
+
+.toast-content h3 {
+  margin-top: 0;
+  font-size: 16px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 5px;
+  margin-bottom: 8px;
+  color: #08c;
+}
+
+.toast-content p {
+  font-size: 13px;
+  margin-bottom: 10px;
+}
+
+.toast-content .close-toast {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #999;
+  line-height: 1;
+}
+
+.toast-content .close-toast:hover {
+  color: #333;
+}
