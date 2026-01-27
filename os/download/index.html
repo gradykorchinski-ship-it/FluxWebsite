@@ -13,6 +13,7 @@
   <meta name="description" content="Download FluxLinux and verify checksums.">
 
   <link rel="stylesheet" href="/assets/css/common.css">
+  <link rel="stylesheet" href="/assets/css/cookie-banner.css">
   <style>
     /* Arch Linux visual system (sourced from archweb.css + download page HTML) */
     * {
@@ -391,30 +392,69 @@
               <div class="footer-heading">Help</div>
               <ul class="menu">
                 <li><a href="/help/">Docs & Guides</a></li>
-                <li><a href="/os/download/">Download</a></li>
-                <li><a href="/help/">System Requirements</a></li>
-              </ul>
+                <div class="legal">
+                  <div>© 2026 FluxLinux Project. All rights reserved.</div>
+                </div>
             </div>
-
-            <div class="col-4">
-              <div class="footer-heading">Company</div>
-              <ul class="menu">
-                <li><a href="/about/">About</a></li>
-                <li><a href="/blog/">Blog</a></li>
-                <li><a href="/legal/terms/">Terms</a></li>
-                <li><a href="/legal/privacy/">Privacy</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="legal">
-        <div>© 2026 FluxLinux Project. All rights reserved.</div>
-      </div>
-    </div>
   </footer>
 
+  <!-- Cookie Banner -->
+  <div id="cookie-banner">
+    <div id="cookie-banner-inner">
+      <div id="cookie-banner-title">Cookie Settings</div>
+      <div class="cookie-text">
+        <p>Our website uses some cookies and records your IP address for the purposes of accessibility, security, and
+          managing your access to the telecommunication network. You can disable data collection and cookies by changing
+          your browser settings, but it may affect how this website functions. <a href="/legal/privacy/">Learn more</a>
+        </p>
+        <p>With your consent, FluxLinux may also use cookies and your IP address to collect individual statistics and
+          provide you with personalized offers. You can adjust or withdraw your consent at any time by visiting the <a
+            href="/legal/privacy/#opt-out">Opt-Out</a>.</p>
+      </div>
+      <div class="cookie-buttons">
+        <button id="accept-cookies" class="retro-btn btn-accept">Accept All</button>
+        <button id="manage-cookies" class="retro-btn btn-manage">Manage Exceptions</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cookie Modal -->
+  <div id="cookie-modal">
+    <div id="cookie-modal-inner">
+      <div class="modal-header">Manage Exceptions</div>
+
+      <div class="cookie-option">
+        <label>Necessary (Always Active)</label>
+        <label class="switch">
+          <input type="checkbox" checked disabled>
+          <span class="slider"></span>
+        </label>
+      </div>
+
+      <div class="cookie-option">
+        <label>Analytics & Performance</label>
+        <label class="switch">
+          <input type="checkbox" id="consent-analytics">
+          <span class="slider"></span>
+        </label>
+      </div>
+
+      <div class="cookie-option">
+        <label>Marketing & Offers</label>
+        <label class="switch">
+          <input type="checkbox" id="consent-marketing">
+          <span class="slider"></span>
+        </label>
+      </div>
+
+      <div class="modal-actions">
+        <button id="save-preferences" class="retro-btn btn-save">Save Preferences</button>
+        <button id="cancel-preferences" class="retro-btn btn-cancel">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="/assets/js/cookie-banner.js"></script>
   <script src="/assets/js/site.js"></script>
   <script>
     const downloadBtns = document.querySelectorAll('.js-download-btn');
