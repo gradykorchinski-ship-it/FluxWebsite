@@ -1,10 +1,16 @@
 import { createClient } from '@supabase/supabase-js'
+import type { VercelRequest, VercelResponse } from '@vercel/node'
 
 const supabaseUrl = process.env.SUPABASE_URL
 const supabaseKey = process.env.SUPABASE_KEY
+
+if (!supabaseUrl || !supabaseKey) {
+    throw new Error('Missing Supabase credentials')
+}
+
 const supabase = createClient(supabaseUrl, supabaseKey)
 
-export default async function handler(req, res) {
+export default async function handler(req: VercelRequest, res: VercelResponse) {
     if (req.method !== 'POST') {
         return res.status(405).json({ error: 'Method not allowed' })
     }
@@ -30,7 +36,7 @@ export default async function handler(req, res) {
         }
 
         return res.status(200).json({ success: true, data })
-    } catch (err) {
+    } catch (err: any) {
         console.error('Server error:', err)
         return res.status(500).json({ error: err.message || 'Internal server error' })
     }
