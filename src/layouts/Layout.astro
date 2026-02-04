@@ -14,7 +14,7 @@ import Footer from "../components/Footer.astro";
 import ScrollProgress from "../components/ScrollProgress.astro";
 ---
 
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
     <head>
         <meta charset="UTF-8" />
@@ -40,57 +40,57 @@ import ScrollProgress from "../components/ScrollProgress.astro";
             Skip to content
         </a>
         <ScrollProgress />
+        <slot name="banner" />
         <Header />
         <main id="main-content" class="flex-grow">
             <slot />
         </main>
         <Footer />
+        <style is:global>
+            /* Global styles */
+            body {
+                overflow-x: hidden;
+            }
+
+            /* Smooth scroll behavior */
+            html {
+                scroll-behavior: smooth;
+            }
+
+            /* Animation performance optimization */
+            @media (prefers-reduced-motion: reduce) {
+                *,
+                *::before,
+                *::after {
+                    animation-duration: 0.01ms !important;
+                    animation-iteration-count: 1 !important;
+                    transition-duration: 0.01ms !important;
+                }
+            }
+
+            /* Custom scrollbar */
+            ::-webkit-scrollbar {
+                width: 10px;
+            }
+
+            ::-webkit-scrollbar-track {
+                background: #1e293b;
+            }
+
+            ::-webkit-scrollbar-thumb {
+                background: #3c6eb4;
+                border-radius: 5px;
+            }
+
+            ::-webkit-scrollbar-thumb:hover {
+                background: #5e8aca;
+            }
+
+            /* Smooth transitions for interactive elements */
+            a,
+            button {
+                transition: all 0.2s ease-in-out;
+            }
+        </style>
     </body>
 </html>
-
-<style is:global>
-    /* Global styles */
-    body {
-        overflow-x: hidden;
-    }
-
-    /* Smooth scroll behavior */
-    html {
-        scroll-behavior: smooth;
-    }
-
-    /* Animation performance optimization */
-    @media (prefers-reduced-motion: reduce) {
-        *,
-        *::before,
-        *::after {
-            animation-duration: 0.01ms !important;
-            animation-iteration-count: 1 !important;
-            transition-duration: 0.01ms !important;
-        }
-    }
-
-    /* Custom scrollbar */
-    ::-webkit-scrollbar {
-        width: 10px;
-    }
-
-    ::-webkit-scrollbar-track {
-        background: #1e293b;
-    }
-
-    ::-webkit-scrollbar-thumb {
-        background: #3c6eb4;
-        border-radius: 5px;
-    }
-
-    ::-webkit-scrollbar-thumb:hover {
-        background: #5e8aca;
-    }
-
-    /* Smooth transitions for interactive elements */
-    a,
-    button {
-        transition: all 0.2s ease-in-out;
-    }
-</style>

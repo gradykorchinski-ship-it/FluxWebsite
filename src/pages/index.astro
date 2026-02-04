@@ -5,6 +5,20 @@ import NewSections from "../components/NewSections.astro";
 ---
 
 <Layout title="FluxLinux — Lightweight, modern Linux distribution">
+	<div
+		slot="banner"
+		class="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 text-white px-4 py-3 text-center text-sm font-medium shadow-lg relative z-50 flex items-center justify-center gap-2"
+	>
+		<span
+			class="bg-white/20 px-2 py-0.5 rounded text-xs font-bold uppercase tracking-wider"
+			>Dev Preview</span
+		>
+		<span
+			><span class="font-bold">FluxLinux 1.5</span> is currently in the works.
+			Get ready for our best release yet!</span
+		>
+	</div>
+
 	<!-- Hero Section -->
 	<div
 		class="relative bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 overflow-hidden"
@@ -71,7 +85,7 @@ import NewSections from "../components/NewSections.astro";
 		<div class="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
 			<img
 				class="h-56 w-full sm:h-72 md:h-96 lg:w-full lg:h-full animate-fade-in"
-				src="/public/hero.png"
+				src="/hero.png"
 				alt="FluxLinux Desktop Screenshot"
 				loading="eager"
 			/>
@@ -196,8 +210,8 @@ import NewSections from "../components/NewSections.astro";
 							<a
 								href="/help/"
 								class="text-primary hover:text-primary-hover font-semibold inline-flex items-center gap-1 group-hover:gap-2 transition-all"
-								>Visit Help Center <span>&rarr;</span></a
-							>
+								>Visit Help Center <span>&rarr;</span>
+							</a>
 						</dd>
 					</div>
 
@@ -240,8 +254,8 @@ import NewSections from "../components/NewSections.astro";
 							<a
 								href="/blog/"
 								class="text-primary hover:text-primary-hover font-semibold inline-flex items-center gap-1 group-hover:gap-2 transition-all"
-								>Read the Blog <span>&rarr;</span></a
-							>
+								>Read the Blog <span>&rarr;</span>
+							</a>
 						</dd>
 					</div>
 				</dl>
