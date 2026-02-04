@@ -1,0 +1,30 @@
+---
+// Scroll progress indicator component
+---
+
+<div
+    id="scroll-progress"
+    class="fixed top-0 left-0 h-1 bg-gradient-primary z-50 transition-all duration-150"
+    style="width: 0%"
+>
+</div>
+
+<script>
+    function updateScrollProgress() {
+        const scrollProgress = document.getElementById("scroll-progress");
+        if (!scrollProgress) return;
+
+        const scrollTop = window.scrollY;
+        const docHeight =
+            document.documentElement.scrollHeight - window.innerHeight;
+        const scrollPercent = (scrollTop / docHeight) * 100;
+
+        scrollProgress.style.width = `${scrollPercent}%`;
+    }
+
+    // Update on scroll
+    window.addEventListener("scroll", updateScrollProgress, { passive: true });
+
+    // Update on load
+    updateScrollProgress();
+</script>

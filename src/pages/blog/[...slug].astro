@@ -1,0 +1,66 @@
+---
+import { type CollectionEntry, getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+
+export async function getStaticPaths() {
+    const posts = await getCollection("blog");
+    return posts.map((post) => ({
+        params: { slug: post.slug },
+        props: post,
+    }));
+}
+type Props = CollectionEntry<"blog">;
+
+const post = Astro.props;
+const { Content } = await post.render();
+---
+
+<Layout title={post.data.title}>
+    <div class="bg-white dark:bg-dark py-24 sm:py-32">
+        <div class="mx-auto max-w-3xl px-6 lg:px-8">
+            <!-- Breadcrumb / Back link -->
+            <div class="mb-8">
+                <a
+                    href="/blog/"
+                    class="text-sm font-semibold leading-6 text-primary hover:text-primary-hover flex items-center gap-1 group"
+                >
+                    <span
+                        class="group-hover:-translate-x-1 transition-transform"
+                        >←</span
+                    > Back to Blog
+                </a>
+            </div>
+
+            <article
+                class="prose prose-lg dark:prose-invert prose-primary mx-auto"
+            >
+                <header class="mb-10 text-center">
+                    <time
+                        datetime={post.data.pubDate.toISOString()}
+                        class="text-gray-500 dark:text-gray-400 text-sm"
+                    >
+                        {
+                            post.data.pubDate.toLocaleDateString("en-us", {
+                                year: "numeric",
+                                month: "long",
+                                day: "numeric",
+                            })
+                        }
+                    </time>
+                    <h1
+                        class="mt-2 text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl"
+                    >
+                        {post.data.title}
+                    </h1>
+                    <p
+                        class="mt-6 text-xl leading-8 text-gray-600 dark:text-gray-300 italic"
+                    >
+                        {post.data.description}
+                    </p>
+                </header>
+
+                <Content />
+            </article>
+        </div>
+    </div>
+</Layout>

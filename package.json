@@ -1,5 +1,5 @@
 {
-  "name": "irregular-inclination",
+  "name": "fluxwebsite",
   "type": "module",
   "version": "0.0.1",
   "scripts": {
@@ -9,6 +9,9 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^5.17.1"
+    "@astrojs/tailwind": "^6.0.2",
+    "@tailwindcss/typography": "^0.5.19",
+    "astro": "^5.17.1",
+    "tailwindcss": "^3.4.19"
   }
 }

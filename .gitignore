@@ -22,3 +22,5 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+_legacy_pre_astro

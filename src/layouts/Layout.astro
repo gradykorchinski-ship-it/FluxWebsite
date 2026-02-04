@@ -1,0 +1,96 @@
+---
+interface Props {
+    title: string;
+    description?: string;
+}
+
+const {
+    title,
+    description = "FluxLinux — Lightweight, modern Linux distribution",
+} = Astro.props;
+
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import ScrollProgress from "../components/ScrollProgress.astro";
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="description" content={description} />
+        <meta name="viewport" content="width=device-width" />
+        <link rel="icon" type="image/png" href="/favicon.png" />
+        <meta name="generator" content={Astro.generator} />
+        <title>{title}</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+    </head>
+    <body
+        class="bg-light-gray text-slate-800 dark:bg-dark dark:text-slate-100 min-h-screen flex flex-col font-sans antialiased selection:bg-primary selection:text-white"
+    >
+        <a
+            href="#main-content"
+            class="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:p-4 focus:bg-white focus:text-primary"
+        >
+            Skip to content
+        </a>
+        <ScrollProgress />
+        <Header />
+        <main id="main-content" class="flex-grow">
+            <slot />
+        </main>
+        <Footer />
+    </body>
+</html>
+
+<style is:global>
+    /* Global styles */
+    body {
+        overflow-x: hidden;
+    }
+
+    /* Smooth scroll behavior */
+    html {
+        scroll-behavior: smooth;
+    }
+
+    /* Animation performance optimization */
+    @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+        }
+    }
+
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+        width: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: #1e293b;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: #3c6eb4;
+        border-radius: 5px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: #5e8aca;
+    }
+
+    /* Smooth transitions for interactive elements */
+    a,
+    button {
+        transition: all 0.2s ease-in-out;
+    }
+</style>

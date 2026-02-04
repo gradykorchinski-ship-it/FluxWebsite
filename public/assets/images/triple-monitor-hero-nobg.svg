@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="720" viewBox="0 0 1920 720" role="img" aria-label="Triple monitor setup showing FluxLinux screens" style="background: transparent;">
+  <defs>
+    <!-- Background -->
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0b0f18"/>
+      <stop offset="1" stop-color="#070a12"/>
+    </linearGradient>
+
+    <!-- Monitor bezel -->
+    <linearGradient id="bezel" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1b2232"/>
+      <stop offset="1" stop-color="#0b1020"/>
+    </linearGradient>
+
+    <!-- Stand metal -->
+    <linearGradient id="metal" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#e8edf2"/>
+      <stop offset="0.45" stop-color="#cfd7df"/>
+      <stop offset="1" stop-color="#b9c3cd"/>
+    </linearGradient>
+
+    <linearGradient id="metalDark" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#c8d1db"/>
+      <stop offset="1" stop-color="#aeb9c4"/>
+    </linearGradient>
+
+    <!-- Screen wallpapers -->
+    <linearGradient id="wallLeft" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#eef2ff"/>
+      <stop offset="1" stop-color="#e6f6ff"/>
+    </linearGradient>
+
+    <linearGradient id="wallMid" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#87c9ff"/>
+      <stop offset="0.55" stop-color="#6a72ff"/>
+      <stop offset="1" stop-color="#5b2cff"/>
+    </linearGradient>
+
+    <linearGradient id="wallRight" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffb347"/>
+      <stop offset="0.55" stop-color="#ff5ea8"/>
+      <stop offset="1" stop-color="#6d28ff"/>
+    </linearGradient>
+
+    <!-- Shadows -->
+    <filter id="drop" x="-30%" y="-30%" width="160%" height="180%">
+      <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#000" flood-opacity="0.55"/>
+    </filter>
+
+    <filter id="soft" x="-30%" y="-30%" width="160%" height="180%">
+      <feDropShadow dx="0" dy="10" stdDeviation="10" flood-color="#000" flood-opacity="0.35"/>
+    </filter>
+
+    <!-- Glass highlight -->
+    <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.18"/>
+      <stop offset="0.25" stop-color="#ffffff" stop-opacity="0.05"/>
+      <stop offset="0.6" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+
+    <!-- Screen pattern noise (subtle) -->
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix type="matrix" values="0 0 0 0 0                 0 0 0 0 0                 0 0 0 0 0                 0 0 0 .12 0"/>
+    </filter>
+
+    <!-- Rounded rectangle helper via clip paths -->
+    <clipPath id="clipScreenL">
+      <rect x="120" y="84" width="560" height="330" rx="18"/>
+    </clipPath>
+    <clipPath id="clipScreenM">
+      <rect x="680" y="68" width="560" height="346" rx="18"/>
+    </clipPath>
+    <clipPath id="clipScreenR">
+      <rect x="1240" y="84" width="560" height="330" rx="18"/>
+    </clipPath>
+  </defs>
+
+  <!-- Background -->
+  
+
+  <!-- ===== LEFT MONITOR ===== -->
+  <g filter="url(#drop)">
+    <!-- bezel -->
+    <rect x="90" y="50" width="620" height="404" rx="28" fill="url(#bezel)"/>
+    <!-- inner frame -->
+    <rect x="110" y="70" width="580" height="364" rx="22" fill="#070b12"/>
+    <!-- screen -->
+    <rect x="120" y="84" width="560" height="330" rx="18" fill="url(#wallLeft)"/>
+
+    <!-- screen content (abstract UI, original) -->
+    <g clip-path="url(#clipScreenL)">
+      <!-- wallpaper shimmer -->
+      <circle cx="250" cy="160" r="180" fill="#7dd3fc" opacity="0.25"/>
+      <circle cx="460" cy="220" r="160" fill="#a78bfa" opacity="0.20"/>
+      <circle cx="560" cy="120" r="120" fill="#34d399" opacity="0.12"/>
+
+      <!-- floating “cards” like an overview / windows -->
+      <g filter="url(#soft)">
+        <rect x="160" y="140" width="170" height="120" rx="16" fill="#ffffff" opacity="0.92"/>
+        <rect x="340" y="120" width="210" height="140" rx="16" fill="#ffffff" opacity="0.92"/>
+        <rect x="220" y="240" width="250" height="130" rx="18" fill="#ffffff" opacity="0.94"/>
+      </g>
+
+      <!-- card details -->
+      <g opacity="0.55" fill="#0b1220">
+        <rect x="176" y="156" width="120" height="12" rx="6"/>
+        <rect x="176" y="176" width="90" height="10" rx="5"/>
+        <rect x="176" y="196" width="70" height="10" rx="5"/>
+
+        <rect x="356" y="136" width="150" height="12" rx="6"/>
+        <rect x="356" y="158" width="120" height="10" rx="5"/>
+        <rect x="356" y="178" width="160" height="10" rx="5"/>
+        <rect x="356" y="198" width="110" height="10" rx="5"/>
+
+        <rect x="242" y="260" width="160" height="14" rx="7"/>
+        <rect x="242" y="286" width="210" height="10" rx="5"/>
+        <rect x="242" y="304" width="190" height="10" rx="5"/>
+        <rect x="242" y="322" width="170" height="10" rx="5"/>
+      </g>
+
+      <!-- top bar -->
+      <rect x="120" y="84" width="560" height="36" rx="18" fill="#0b1220" opacity="0.25"/>
+      <text x="400" y="108" text-anchor="middle" font-family="Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif" font-size="14" font-weight="700" fill="#0b1220" opacity="0.55">FluxLinux</text>
+
+      <!-- subtle grain -->
+      <rect x="120" y="84" width="560" height="330" fill="#000" opacity="0.06" filter="url(#grain)"/>
+      <!-- glass highlight -->
+      <path d="M120 84 h560 v140 c-180 -40 -300 -120 -560 -40 z" fill="url(#glass)"/>
+    </g>
+  </g>
+
+  <!-- Left stand -->
+  <g filter="url(#soft)">
+    <rect x="350" y="454" width="100" height="140" rx="18" fill="url(#metal)"/>
+    <rect x="280" y="590" width="240" height="24" rx="12" fill="url(#metalDark)"/>
+  </g>
+
+  <!-- ===== MIDDLE MONITOR (slightly taller) ===== -->
+  <g filter="url(#drop)">
+    <rect x="650" y="36" width="620" height="420" rx="28" fill="url(#bezel)"/>
+    <rect x="670" y="56" width="580" height="380" rx="22" fill="#070b12"/>
+    <rect x="680" y="68" width="560" height="346" rx="18" fill="url(#wallMid)"/>
+
+    <g clip-path="url(#clipScreenM)">
+      <!-- “mountain” shapes -->
+      <path d="M680 320 C760 270 820 290 900 250 C980 210 1040 220 1140 180 L1240 240 L1240 414 L680 414 Z" fill="#0b1220" opacity="0.22"/>
+      <path d="M680 350 C760 320 840 320 920 290 C1010 255 1090 260 1240 220 L1240 414 L680 414 Z" fill="#0b1220" opacity="0.16"/>
+
+      <!-- dock -->
+      <rect x="840" y="382" width="260" height="26" rx="13" fill="#0b1220" opacity="0.28"/>
+      <circle cx="870" cy="395" r="7" fill="#ffffff" opacity="0.75"/>
+      <circle cx="900" cy="395" r="7" fill="#ffffff" opacity="0.55"/>
+      <circle cx="930" cy="395" r="7" fill="#ffffff" opacity="0.45"/>
+      <circle cx="960" cy="395" r="7" fill="#ffffff" opacity="0.65"/>
+      <circle cx="990" cy="395" r="7" fill="#ffffff" opacity="0.35"/>
+      <circle cx="1020" cy="395" r="7" fill="#ffffff" opacity="0.50"/>
+      <circle cx="1050" cy="395" r="7" fill="#ffffff" opacity="0.40"/>
+
+      <!-- app menu panel -->
+      <g filter="url(#soft)">
+        <rect x="720" y="190" width="260" height="190" rx="18" fill="#ffffff" opacity="0.92"/>
+      </g>
+      <g fill="#0b1220" opacity="0.55">
+        <rect x="742" y="212" width="120" height="12" rx="6"/>
+        <rect x="742" y="236" width="180" height="10" rx="5"/>
+        <rect x="742" y="256" width="160" height="10" rx="5"/>
+        <rect x="742" y="276" width="140" height="10" rx="5"/>
+        <rect x="742" y="300" width="190" height="10" rx="5"/>
+        <rect x="742" y="320" width="150" height="10" rx="5"/>
+        <rect x="742" y="344" width="110" height="10" rx="5"/>
+      </g>
+
+      <!-- top bar -->
+      <rect x="680" y="68" width="560" height="36" rx="18" fill="#0b1220" opacity="0.24"/>
+      <text x="960" y="92" text-anchor="middle" font-family="Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif" font-size="14" font-weight="700" fill="#ffffff" opacity="0.88">FluxLinux Desktop</text>
+
+      <rect x="680" y="68" width="560" height="346" fill="#000" opacity="0.05" filter="url(#grain)"/>
+      <path d="M680 68 h560 v150 c-190 -40 -320 -125 -560 -38 z" fill="url(#glass)"/>
+    </g>
+  </g>
+
+  <!-- Middle stand -->
+  <g filter="url(#soft)">
+    <rect x="910" y="456" width="100" height="150" rx="18" fill="url(#metal)"/>
+    <rect x="840" y="604" width="240" height="24" rx="12" fill="url(#metalDark)"/>
+  </g>
+
+  <!-- ===== RIGHT MONITOR ===== -->
+  <g filter="url(#drop)">
+    <rect x="1210" y="50" width="620" height="404" rx="28" fill="url(#bezel)"/>
+    <rect x="1230" y="70" width="580" height="364" rx="22" fill="#070b12"/>
+    <rect x="1240" y="84" width="560" height="330" rx="18" fill="url(#wallRight)"/>
+
+    <g clip-path="url(#clipScreenR)">
+      <!-- game-like scene: platforms + character -->
+      <path d="M1240 330 C1340 320 1440 350 1560 330 C1680 310 1750 260 1800 240 L1800 414 L1240 414 Z" fill="#0b1220" opacity="0.20"/>
+      <path d="M1240 360 C1380 340 1500 390 1620 360 C1740 330 1780 280 1800 270 L1800 414 L1240 414 Z" fill="#0b1220" opacity="0.14"/>
+
+      <!-- floating “energy” -->
+      <circle cx="1700" cy="170" r="70" fill="#ffffff" opacity="0.18"/>
+      <circle cx="1700" cy="170" r="40" fill="#ffffff" opacity="0.20"/>
+
+      <!-- character silhouette -->
+      <g opacity="0.9">
+        <circle cx="1510" cy="260" r="16" fill="#0b1220" opacity="0.55"/>
+        <path d="M1500 276 C1492 300 1500 312 1484 330 C1468 348 1468 372 1484 382 C1502 394 1526 382 1528 360 C1530 336 1516 328 1518 312 C1520 292 1510 284 1500 276 Z" fill="#0b1220" opacity="0.55"/>
+        <!-- glow hands -->
+        <circle cx="1485" cy="310" r="14" fill="#a78bfa" opacity="0.85"/>
+        <circle cx="1530" cy="300" r="12" fill="#38bdf8" opacity="0.85"/>
+      </g>
+
+      <!-- HUD bar -->
+      <rect x="1240" y="84" width="560" height="36" rx="18" fill="#0b1220" opacity="0.25"/>
+      <text x="1520" y="108" text-anchor="middle" font-family="Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif" font-size="14" font-weight="700" fill="#ffffff" opacity="0.88">FluxLinux — Gaming Mode</text>
+
+      <rect x="1240" y="84" width="560" height="330" fill="#000" opacity="0.06" filter="url(#grain)"/>
+      <path d="M1240 84 h560 v140 c-175 -42 -315 -115 -560 -36 z" fill="url(#glass)"/>
+    </g>
+  </g>
+
+  <!-- Right stand -->
+  <g filter="url(#soft)">
+    <rect x="1470" y="454" width="100" height="140" rx="18" fill="url(#metal)"/>
+    <rect x="1400" y="590" width="240" height="24" rx="12" fill="url(#metalDark)"/>
+  </g>
+
+  <!-- ===== KEYBOARD + MOUSE ===== -->
+  <g filter="url(#soft)">
+    <!-- keyboard -->
+    <rect x="780" y="620" width="420" height="54" rx="20" fill="url(#metal)" opacity="0.95"/>
+    <rect x="800" y="636" width="380" height="22" rx="11" fill="#ffffff" opacity="0.55"/>
+    <!-- keys -->
+    <g opacity="0.25" fill="#0b1220">
+      <!-- row 1 -->
+      <rect x="808" y="640" width="22" height="14" rx="4"/>
+      <rect x="836" y="640" width="22" height="14" rx="4"/>
+      <rect x="864" y="640" width="22" height="14" rx="4"/>
+      <rect x="892" y="640" width="22" height="14" rx="4"/>
+      <rect x="920" y="640" width="22" height="14" rx="4"/>
+      <rect x="948" y="640" width="22" height="14" rx="4"/>
+      <rect x="976" y="640" width="22" height="14" rx="4"/>
+      <rect x="1004" y="640" width="22" height="14" rx="4"/>
+      <rect x="1032" y="640" width="22" height="14" rx="4"/>
+      <rect x="1060" y="640" width="22" height="14" rx="4"/>
+      <rect x="1088" y="640" width="22" height="14" rx="4"/>
+      <rect x="1116" y="640" width="22" height="14" rx="4"/>
+      <rect x="1144" y="640" width="30" height="14" rx="4"/>
+      <!-- row 2 -->
+      <rect x="816" y="658" width="34" height="12" rx="4"/>
+      <rect x="856" y="658" width="22" height="12" rx="4"/>
+      <rect x="884" y="658" width="22" height="12" rx="4"/>
+      <rect x="912" y="658" width="22" height="12" rx="4"/>
+      <rect x="940" y="658" width="22" height="12" rx="4"/>
+      <rect x="968" y="658" width="22" height="12" rx="4"/>
+      <rect x="996" y="658" width="22" height="12" rx="4"/>
+      <rect x="1024" y="658" width="22" height="12" rx="4"/>
+      <rect x="1052" y="658" width="22" height="12" rx="4"/>
+      <rect x="1080" y="658" width="22" height="12" rx="4"/>
+      <rect x="1108" y="658" width="22" height="12" rx="4"/>
+      <rect x="1136" y="658" width="38" height="12" rx="4"/>
+    </g>
+
+    <!-- mouse -->
+    <g>
+      <path d="M1320 622 C1350 622 1372 646 1372 676 C1372 696 1358 706 1346 706 L1320 706 C1290 706 1268 682 1268 652 C1268 636 1284 622 1302 622 Z" fill="url(#metal)" opacity="0.96"/>
+      <path d="M1320 622 C1335 622 1348 634 1348 650 L1348 706 L1320 706 Z" fill="#ffffff" opacity="0.28"/>
+    </g>
+  </g>
+
+  <!-- Subtle “desk” glow -->
+  <rect x="0" y="560" width="1920" height="160" fill="#000" opacity="0.25"/>
+</svg>

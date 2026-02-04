@@ -1,0 +1,97 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="About - FluxLinux">
+    <div class="bg-white dark:bg-dark py-24 sm:py-32">
+        <div class="mx-auto max-w-7xl px-6 lg:px-8">
+            <div class="mx-auto max-w-2xl lg:text-center">
+                <h2 class="text-base font-semibold leading-7 text-primary">
+                    About
+                </h2>
+                <p
+                    class="mt-2 text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl"
+                >
+                    Why FluxLinux exists
+                </p>
+                <p
+                    class="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300"
+                >
+                    FluxLinux aims to be fast, understandable, and respectful:
+                    your machine, your data, your rules. Keep the UX polished,
+                    keep the internals debuggable.
+                </p>
+            </div>
+
+            <div class="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-4xl">
+                <div
+                    class="grid max-w-xl grid-cols-1 gap-x-8 gap-y-10 lg:max-w-none lg:grid-cols-2 lg:gap-y-16"
+                >
+                    <!-- Additional philosophy points could go here if elaborated -->
+                    <div class="relative pl-16">
+                        <dt
+                            class="text-base font-semibold leading-7 text-gray-900 dark:text-white"
+                        >
+                            <div
+                                class="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-primary"
+                            >
+                                <svg
+                                    class="h-6 w-6 text-white"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke-width="1.5"
+                                    stroke="currentColor"
+                                    aria-hidden="true"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"
+                                    ></path>
+                                </svg>
+                            </div>
+                            Performance First
+                        </dt>
+                        <dd
+                            class="mt-2 text-base leading-7 text-gray-600 dark:text-gray-400"
+                        >
+                            We prioritize speed and responsiveness above all
+                            else. No bloat, no unnecessary background services.
+                        </dd>
+                    </div>
+                    <div class="relative pl-16">
+                        <dt
+                            class="text-base font-semibold leading-7 text-gray-900 dark:text-white"
+                        >
+                            <div
+                                class="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-primary"
+                            >
+                                <svg
+                                    class="h-6 w-6 text-white"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke-width="1.5"
+                                    stroke="currentColor"
+                                    aria-hidden="true"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z"
+                                    ></path>
+                                </svg>
+                            </div>
+                            Respected Privacy
+                        </dt>
+                        <dd
+                            class="mt-2 text-base leading-7 text-gray-600 dark:text-gray-400"
+                        >
+                            Your data belongs to you. No tracking, no telemetry
+                            by default, and full transparency.
+                        </dd>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</Layout>

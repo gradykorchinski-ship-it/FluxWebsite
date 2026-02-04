@@ -1,0 +1,150 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const guides = [
+    {
+        category: "Getting Started",
+        links: [
+            {
+                title: "Install FluxLinux",
+                href: "/help/install",
+                description: "Step-by-step installation guide.",
+            },
+            {
+                title: "Create a bootable USB",
+                href: "/help/create-usb",
+                description: "How to flash the ISO.",
+            },
+            {
+                title: "System Requirements",
+                href: "/os/#requirements",
+                description: "Check if your hardware is supported.",
+            },
+        ],
+    },
+    {
+        category: "Common Fixes",
+        links: [
+            {
+                title: "Wi-Fi / Bluetooth issues",
+                href: "/help/wifi-bluetooth",
+                description: "Troubleshooting connectivity.",
+            },
+            {
+                title: "NVIDIA Drivers",
+                href: "/help/nvidia",
+                description: "Installing proprietary drivers.",
+            },
+            {
+                title: "Dual Boot Guide",
+                href: "/help/dual-boot",
+                description: "Running alongside Windows.",
+            },
+        ],
+    },
+];
+---
+
+<Layout title="Help - FluxLinux">
+    <div class="bg-white dark:bg-dark py-24 sm:py-32">
+        <div class="mx-auto max-w-7xl px-6 lg:px-8">
+            <div class="mx-auto max-w-2xl text-center">
+                <h2 class="text-base font-semibold leading-7 text-primary">
+                    Support
+                </h2>
+                <p
+                    class="mt-2 text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl"
+                >
+                    Docs & Troubleshooting
+                </p>
+                <p
+                    class="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300"
+                >
+                    Find answers to common questions and learn how to get the
+                    most out of FluxLinux.
+                </p>
+            </div>
+
+            <div
+                class="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none"
+            >
+                <div
+                    class="grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-2"
+                >
+                    {
+                        guides.map((section) => (
+                            <div class="flex flex-col">
+                                <h3 class="flex items-center gap-x-3 text-2xl font-bold leading-7 text-gray-900 dark:text-white mb-6">
+                                    {section.category}
+                                </h3>
+                                <div class="grid gap-4">
+                                    {section.links.map((link) => (
+                                        <a
+                                            href={link.href}
+                                            class="group relative p-5 bg-white dark:bg-dark-card rounded-lg border-2 border-gray-200 dark:border-gray-700 hover:border-primary dark:hover:border-primary transition-all duration-300 hover:shadow-card-hover hover:-translate-y-1"
+                                        >
+                                            <div class="flex items-start gap-4">
+                                                <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-primary/10 dark:bg-primary/20 flex items-center justify-center group-hover:bg-primary/20 dark:group-hover:bg-primary/30 transition-colors">
+                                                    <svg
+                                                        class="w-5 h-5 text-primary"
+                                                        fill="none"
+                                                        stroke="currentColor"
+                                                        viewBox="0 0 24 24"
+                                                    >
+                                                        <path
+                                                            stroke-linecap="round"
+                                                            stroke-linejoin="round"
+                                                            stroke-width="2"
+                                                            d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                                                        />
+                                                    </svg>
+                                                </div>
+                                                <div class="flex-1 min-w-0">
+                                                    <h4 class="text-lg font-semibold text-gray-900 dark:text-white group-hover:text-primary dark:group-hover:text-primary transition-colors">
+                                                        {link.title}
+                                                    </h4>
+                                                    <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                                                        {link.description}
+                                                    </p>
+                                                </div>
+                                                <svg
+                                                    class="flex-shrink-0 w-5 h-5 text-gray-400 group-hover:text-primary group-hover:translate-x-1 transition-all"
+                                                    fill="none"
+                                                    stroke="currentColor"
+                                                    viewBox="0 0 24 24"
+                                                >
+                                                    <path
+                                                        stroke-linecap="round"
+                                                        stroke-linejoin="round"
+                                                        stroke-width="2"
+                                                        d="M9 5l7 7-7 7"
+                                                    />
+                                                </svg>
+                                            </div>
+                                        </a>
+                                    ))}
+                                </div>
+                            </div>
+                        ))
+                    }
+                </div>
+
+                <div class="mt-16 sm:mt-24 text-center">
+                    <p
+                        class="text-base font-semibold leading-7 text-gray-600 dark:text-gray-400"
+                    >
+                        Can't find what you're looking for?
+                    </p>
+                    <div class="mt-6 flex items-center justify-center gap-x-6">
+                        <a
+                            href="https://github.com/gradykorchinski-ship-it/FluxWebsite/issues"
+                            target="_blank"
+                            class="rounded-md bg-primary px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-primary-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary transition-colors"
+                            >Report a Bug</a
+                        >
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</Layout>

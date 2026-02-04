@@ -1,0 +1,159 @@
+---
+// Scroll-triggered animations using Intersection Observer
+---
+
+<script>
+    // Intersection Observer for scroll animations
+    if (typeof window !== "undefined") {
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -100px 0px",
+        };
+
+        const animateOnScroll = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("animate-in");
+
+                    // Handle stagger animations
+                    if (entry.target.hasAttribute("data-stagger")) {
+                        const children = entry.target.querySelectorAll(
+                            "[data-stagger-item]",
+                        );
+                        children.forEach((child, index) => {
+                            setTimeout(() => {
+                                child.classList.add("animate-in");
+                            }, index * 100);
+                        });
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Observe all elements with scroll-animate class
+        document.addEventListener("DOMContentLoaded", () => {
+            const elements = document.querySelectorAll(".scroll-animate");
+            elements.forEach((el) => animateOnScroll.observe(el));
+        });
+
+        // Counter animation
+        const animateCounter = (
+            element: HTMLElement,
+            target: number,
+            suffix: string = "",
+        ) => {
+            const duration = 2000;
+            const start = 0;
+            const increment = target / (duration / 16);
+            let current = start;
+
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    element.textContent = target + suffix;
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(current) + suffix;
+                }
+            }, 16);
+        };
+
+        // Observe counters
+        const counterObserver = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (
+                        entry.isIntersecting &&
+                        !entry.target.classList.contains("counted")
+                    ) {
+                        entry.target.classList.add("counted");
+                        const target = parseInt(
+                            entry.target.getAttribute("data-target") || "0",
+                        );
+                        const suffix =
+                            entry.target.getAttribute("data-suffix") || "";
+                        animateCounter(
+                            entry.target as HTMLElement,
+                            target,
+                            suffix,
+                        );
+                    }
+                });
+            },
+            { threshold: 0.5 },
+        );
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const counters = document.querySelectorAll(".counter-animate");
+            counters.forEach((counter) => counterObserver.observe(counter));
+        });
+    }
+</script>
+
+<style is:global>
+    /* Scroll animation base styles */
+    .scroll-animate {
+        opacity: 0;
+        transform: translateY(30px);
+        transition:
+            opacity 0.6s ease-out,
+            transform 0.6s ease-out;
+    }
+
+    .scroll-animate.animate-in {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* Stagger items */
+    [data-stagger-item] {
+        opacity: 0;
+        transform: translateY(20px);
+        transition:
+            opacity 0.4s ease-out,
+            transform 0.4s ease-out;
+    }
+
+    [data-stagger-item].animate-in {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* Slide in from left */
+    .scroll-animate.from-left {
+        transform: translateX(-50px);
+    }
+
+    .scroll-animate.from-left.animate-in {
+        transform: translateX(0);
+    }
+
+    /* Slide in from right */
+    .scroll-animate.from-right {
+        transform: translateX(50px);
+    }
+
+    .scroll-animate.from-right.animate-in {
+        transform: translateX(0);
+    }
+
+    /* Scale in */
+    .scroll-animate.scale {
+        transform: scale(0.9);
+    }
+
+    .scroll-animate.scale.animate-in {
+        transform: scale(1);
+    }
+
+    /* 3D card tilt effect */
+    .tilt-card {
+        transform-style: preserve-3d;
+        transition: transform 0.3s ease;
+    }
+
+    .tilt-card:hover {
+        transform: perspective(1000px) rotateX(var(--rotate-x, 0deg))
+            rotateY(var(--rotate-y, 0deg)) scale3d(1.02, 1.02, 1.02);
+    }
+</style>
