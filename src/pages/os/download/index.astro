@@ -68,8 +68,8 @@ import Layout from "../../../layouts/Layout.astro";
                                 ><path
                                     fill-rule="evenodd"
                                     d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
-                                    clip-rule="evenodd"></path></svg
-                            >
+                                    clip-rule="evenodd"></path>
+                            </svg>
                             Kernel: 6.8.x
                         </li>
                         <li class="flex gap-x-3">
@@ -81,8 +81,8 @@ import Layout from "../../../layouts/Layout.astro";
                                 ><path
                                     fill-rule="evenodd"
                                     d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
-                                    clip-rule="evenodd"></path></svg
-                            >
+                                    clip-rule="evenodd"></path>
+                            </svg>
                             ISO Size: 3.0 GB
                         </li>
                         <li class="flex gap-x-3">
@@ -94,8 +94,8 @@ import Layout from "../../../layouts/Layout.astro";
                                 ><path
                                     fill-rule="evenodd"
                                     d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
-                                    clip-rule="evenodd"></path></svg
-                            >
+                                    clip-rule="evenodd"></path>
+                            </svg>
                             64-bit AMD64
                         </li>
                     </ul>
@@ -176,8 +176,8 @@ import Layout from "../../../layouts/Layout.astro";
                             stroke-linecap="round"
                             stroke-linejoin="round"
                             stroke-width="2"
-                            d="M6 18L18 6M6 6l12 12"></path></svg
-                    >
+                            d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
                 </button>
             </div>
             <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">
@@ -209,16 +209,40 @@ import Layout from "../../../layouts/Layout.astro";
 <script>
     const downloadBtn = document.getElementById("download-btn");
     const modal = document.getElementById(
-        "newsletter-modal",
+        "newsletter-modal"
     ) as HTMLDialogElement;
     const closeBtn = document.getElementById("close-modal");
     const skipBtn = document.getElementById("skip-btn");
     const subscribeBtn = document.getElementById("subscribe-btn");
     const emailInput = document.getElementById(
-        "newsletter-email",
+        "newsletter-email"
     ) as HTMLInputElement;
 
     let targetUrl = "";
+
+    // Helper to get cookie consent status
+    const hasConsent = () => {
+        return localStorage.getItem("flux_cookie_consent") === "accepted";
+    };
+
+    // Track download event
+    const trackDownload = async (version: string) => {
+        if (!hasConsent()) return; // Respect privacy
+
+        try {
+            await fetch("/api/downloads", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    version,
+                    userAgent: navigator.userAgent,
+                    consent: true,
+                }),
+            });
+        } catch (e) {
+            console.error("Failed to track download:", e);
+        }
+    };
 
     if (downloadBtn && modal) {
         downloadBtn.addEventListener("click", (e) => {
@@ -229,7 +253,11 @@ import Layout from "../../../layouts/Layout.astro";
         });
 
         const startDownload = () => {
-            if (targetUrl) window.location.href = targetUrl;
+            if (targetUrl) {
+                // Track download
+                trackDownload("1.4");
+                window.location.href = targetUrl;
+            }
             modal.close();
         };
 
@@ -249,20 +277,19 @@ import Layout from "../../../layouts/Layout.astro";
                     return;
                 }
 
-                // Mock subscription
+                // Subscribe to newsletter
                 try {
                     await fetch("/api/subscribe", {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify({ email }),
+                        body: JSON.stringify({
+                            email,
+                            downloadedVersion: "1.4",
+                        }),
                     });
                     alert("Subscribed!");
                 } catch (e) {
-                    console.log(
-                        "Subscription endpoint likely does not exist yet",
-                        e,
-                    );
-                    // allow download anyway
+                    console.log("Subscription failed:", e);
                 }
                 startDownload();
             });

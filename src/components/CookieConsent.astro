@@ -1,0 +1,108 @@
+<div
+    id="cookie-consent-banner"
+    class="fixed bottom-0 left-0 right-0 bg-white dark:bg-slate-800 border-t-2 border-primary shadow-2xl z-50 transform translate-y-0 transition-transform duration-300"
+    style="display: none;"
+>
+    <div class="max-w-7xl mx-auto px-4 py-4 sm:px-6 lg:px-8">
+        <div
+            class="flex flex-col sm:flex-row items-center justify-between gap-4"
+        >
+            <div class="flex-1">
+                <p class="text-sm text-gray-700 dark:text-gray-300">
+                    We use cookies to improve your experience and analyze
+                    website traffic.
+                    <a
+                        href="/privacy"
+                        class="text-primary hover:underline font-medium"
+                        >Learn more</a
+                    >
+                </p>
+            </div>
+            <div class="flex gap-3">
+                <button
+                    id="cookie-reject"
+                    class="px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-slate-700 rounded-lg hover:bg-gray-200 dark:hover:bg-slate-600 transition-colors"
+                >
+                    Decline
+                </button>
+                <button
+                    id="cookie-accept"
+                    class="px-4 py-2 text-sm font-medium text-white bg-primary rounded-lg hover:bg-primary-hover transition-colors shadow-md hover:shadow-lg"
+                >
+                    Accept
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const banner = document.getElementById("cookie-consent-banner");
+    const acceptBtn = document.getElementById("cookie-accept");
+    const rejectBtn = document.getElementById("cookie-reject");
+
+    // Generate or get user ID
+    function getUserId() {
+        let userId = localStorage.getItem("flux_user_id");
+        if (!userId) {
+            userId = crypto.randomUUID();
+            localStorage.setItem("flux_user_id", userId);
+        }
+        return userId;
+    }
+
+    // Check if consent already given
+    const consent = localStorage.getItem("flux_cookie_consent");
+    if (!consent && banner) {
+        banner.style.display = "block";
+    }
+
+    // Handle accept
+    if (acceptBtn) {
+        acceptBtn.addEventListener("click", async () => {
+            localStorage.setItem("flux_cookie_consent", "accepted");
+            if (banner) banner.style.display = "none";
+
+            // Send to API
+            try {
+                await fetch("/api/cookie-consent", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        consent: true,
+                        userId: getUserId(),
+                    }),
+                });
+            } catch (e) {
+                console.error("Failed to record consent:", e);
+            }
+        });
+    }
+
+    // Handle reject
+    if (rejectBtn) {
+        rejectBtn.addEventListener("click", async () => {
+            localStorage.setItem("flux_cookie_consent", "rejected");
+            if (banner) banner.style.display = "none";
+
+            // Send to API
+            try {
+                await fetch("/api/cookie-consent", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        consent: false,
+                        userId: getUserId(),
+                    }),
+                });
+            } catch (e) {
+                console.error("Failed to record consent:", e);
+            }
+        });
+    }
+
+    // Export for use in other scripts
+    (window as any).getCookieConsent = () => {
+        return localStorage.getItem("flux_cookie_consent") === "accepted";
+    };
+</script>

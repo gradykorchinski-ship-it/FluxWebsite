@@ -12,6 +12,7 @@ const {
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import ScrollProgress from "../components/ScrollProgress.astro";
+import CookieConsent from "../components/CookieConsent.astro";
 ---
 
 <!DOCTYPE html>
@@ -45,6 +46,7 @@ import ScrollProgress from "../components/ScrollProgress.astro";
         <main id="main-content" class="flex-grow">
             <slot />
         </main>
+        <CookieConsent />
         <Footer />
         <style is:global>
             /* Global styles */
