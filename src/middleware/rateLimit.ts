@@ -1,4 +1,4 @@
-import type { MiddlewareHandler } from 'astro';
+import type { APIContext, MiddlewareNext } from 'astro';
 
 // Simple in-memory rate limiting (use Redis in production)
 const requestCounts = new Map<string, { count: number; resetTime: number }>();
@@ -6,7 +6,7 @@ const requestCounts = new Map<string, { count: number; resetTime: number }>();
 const RATE_LIMIT_WINDOW = 60000; // 1 minute
 const MAX_REQUESTS = 10; // 10 requests per minute per IP
 
-export const rateLimit: MiddlewareHandler = async ({ request, locals }, next) => {
+export const rateLimit = async ({ request }: APIContext, next: MiddlewareNext) => {
     const clientIP = request.headers.get('x-forwarded-for') || 'unknown';
     const now = Date.now();
 

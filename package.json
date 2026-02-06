@@ -9,6 +9,7 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/check": "^0.9.6",
     "@astrojs/node": "^9.5.2",
     "@astrojs/tailwind": "^6.0.2",
     "@tailwindcss/typography": "^0.5.19",
@@ -17,6 +18,15 @@
     "tailwindcss": "^3.4.19"
   },
   "devDependencies": {
+    "@types/debug": "^4.1.12",
+    "@types/estree": "^1.0.8",
+    "@types/hast": "^3.0.4",
+    "@types/mdast": "^4.0.4",
+    "@types/ms": "^2.1.0",
+    "@types/nlcst": "^2.0.3",
+    "@types/node": "^25.2.1",
+    "@types/unist": "^3.0.3",
+    "tsx": "^4.21.0",
     "typescript": "^5.9.3"
   }
 }

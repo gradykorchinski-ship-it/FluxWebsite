@@ -51,6 +51,16 @@
         return userId;
     }
 
+    function getBrowserDetails() {
+        return {
+            language: navigator.language,
+            platform: navigator.platform,
+            screenHeight: window.screen.height,
+            screenWidth: window.screen.width,
+            timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+        };
+    }
+
     // Check if consent already given
     const consent = localStorage.getItem("flux_cookie_consent");
     if (!consent && banner) {
@@ -71,6 +81,7 @@
                     body: JSON.stringify({
                         consent: true,
                         userId: getUserId(),
+                        browserDetails: getBrowserDetails(),
                     }),
                 });
             } catch (e) {
@@ -93,6 +104,7 @@
                     body: JSON.stringify({
                         consent: false,
                         userId: getUserId(),
+                        browserDetails: getBrowserDetails(),
                     }),
                 });
             } catch (e) {

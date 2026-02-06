@@ -1,8 +1,9 @@
+import type { APIContext, MiddlewareNext } from 'astro';
 import { defineMiddleware, sequence } from 'astro:middleware';
 import { rateLimit } from './middleware/rateLimit';
 
 // Security headers middleware
-const securityHeaders = defineMiddleware(async (context, next) => {
+const securityHeaders = defineMiddleware(async (_context: APIContext, next: MiddlewareNext) => {
     const response = await next();
 
     // Add security headers
@@ -26,13 +27,6 @@ const securityHeaders = defineMiddleware(async (context, next) => {
     return response;
 });
 
-// Rate limiting for API routes only
-const apiRateLimit = defineMiddleware(async (context, next) => {
-    if (context.url.pathname.startsWith('/api/')) {
-        return await rateLimit(context, next);
-    }
-    return await next();
-});
+// Combine middlewares - rateLimit already handles API route checking internally
+export const onRequest = sequence(rateLimit, securityHeaders);
 
-// Combine middlewares
-export const onRequest = sequence(securityHeaders, apiRateLimit);

@@ -2,17 +2,17 @@ import postgres from 'postgres';
 
 // Initialize PostgreSQL client
 export const sql = postgres(
-    import.meta.env.DATABASE_URL || 'postgresql://fluxuser:flux_dev_password@localhost:5432/fluxwebsite',
-    {
-        max: 10, // Connection pool size
-    }
+  import.meta.env.DATABASE_URL || 'postgresql://fluxuser:flux_dev_password@localhost:5432/fluxwebsite',
+  {
+    max: 10, // Connection pool size
+  }
 );
 
 // Database schema initialization
 export async function initializeDatabase() {
-    try {
-        // Downloads table
-        await sql`
+  try {
+    // Downloads table
+    await sql`
       CREATE TABLE IF NOT EXISTS downloads (
         id SERIAL PRIMARY KEY,
         version TEXT NOT NULL,
@@ -23,18 +23,36 @@ export async function initializeDatabase() {
       )
     `;
 
-        // Cookie consents table
-        await sql`
+    // Cookie consents table
+    await sql`
       CREATE TABLE IF NOT EXISTS cookie_consents (
         id SERIAL PRIMARY KEY,
         consent_given BOOLEAN NOT NULL,
         timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        user_id TEXT
+        user_id TEXT,
+        ip_address TEXT,
+        country TEXT,
+        user_agent TEXT,
+        browser_details JSONB
       )
     `;
 
-        // Newsletter subscribers table
-        await sql`
+    // Cookie consents schema update (for existing tables)
+    const addColumn = async (table: string, column: string, type: string) => {
+      try {
+        await sql.unsafe(`ALTER TABLE ${table} ADD COLUMN IF NOT EXISTS ${column} ${type}`);
+      } catch (e) {
+        console.error(`Failed to add column ${column} to ${table}:`, e);
+      }
+    };
+
+    await addColumn('cookie_consents', 'ip_address', 'TEXT');
+    await addColumn('cookie_consents', 'country', 'TEXT');
+    await addColumn('cookie_consents', 'user_agent', 'TEXT');
+    await addColumn('cookie_consents', 'browser_details', 'JSONB');
+
+    // Newsletter subscribers table
+    await sql`
       CREATE TABLE IF NOT EXISTS newsletter_subscribers (
         id SERIAL PRIMARY KEY,
         email TEXT UNIQUE NOT NULL,
@@ -43,14 +61,17 @@ export async function initializeDatabase() {
       )
     `;
 
-        console.log('✅ Database tables initialized');
-    } catch (error) {
-        console.error('❌ Database initialization error:', error);
+    console.log('✅ Database tables initialized');
+  } catch (error: any) {
+    console.error('❌ Database initialization error:', error);
+    if (import.meta.env.DEV && (error?.code === 'ECONNREFUSED' || error?.message?.includes('connect'))) {
+      console.warn('⚠️ Running in DEV mode without database connection. Features requiring DB will use fallbacks.');
     }
+  }
 }
 
 // Helper function to hash IP addresses for privacy
 export function hashIP(ip: string): string {
-    // Simple hash for privacy - in production use crypto
-    return btoa(ip).slice(0, 16);
+  // Simple hash for privacy - in production use crypto
+  return btoa(ip).slice(0, 16);
 }
