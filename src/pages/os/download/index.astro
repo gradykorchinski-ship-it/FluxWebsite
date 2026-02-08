@@ -3,6 +3,30 @@ import Layout from "../../../layouts/Layout.astro";
 ---
 
 <Layout title="Download FluxLinux">
+    <div
+        slot="banner"
+        class="bg-primary text-white py-3 px-4 text-center text-sm font-medium"
+    >
+        <div class="max-w-7xl mx-auto flex items-center justify-center gap-x-2">
+            <svg
+                class="h-5 w-5 flex-shrink-0 text-primary-light"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+            >
+                <path
+                    fill-rule="evenodd"
+                    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                    clip-rule="evenodd"></path>
+            </svg>
+            <p>
+                You're viewing the official <span
+                    class="font-bold underline decoration-2 underline-offset-2"
+                    >beta release</span
+                > of FluxLinux 1.5. Help us shape the future of computing by testing
+                our latest features and providing feedback.
+            </p>
+        </div>
+    </div>
     <div class="bg-gray-50 dark:bg-dark py-16 sm:py-24">
         <div class="mx-auto max-w-7xl px-6 lg:px-8">
             <div class="mx-auto max-w-2xl text-center">
@@ -20,7 +44,7 @@ import Layout from "../../../layouts/Layout.astro";
                 <div
                     class="mt-4 inline-flex items-center px-3 py-1 rounded-full bg-amber-100 text-amber-800 text-sm font-medium"
                 >
-                    Version: 1.4
+                    Version: 1.5
                 </div>
                 <p class="mt-2 text-sm text-gray-500">
                     FluxLinux is built on Linux Mint. You might still encounter
@@ -83,7 +107,7 @@ import Layout from "../../../layouts/Layout.astro";
                                     d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
                                     clip-rule="evenodd"></path>
                             </svg>
-                            ISO Size: 3.0 GB
+                            ISO Size: 3.3 GB
                         </li>
                         <li class="flex gap-x-3">
                             <svg
@@ -105,10 +129,10 @@ import Layout from "../../../layouts/Layout.astro";
                         </p>
                         <code
                             class="block mt-2 bg-gray-100 dark:bg-slate-900 p-2 rounded text-xs break-all"
-                            >sha256sum FluxLinux-1.4-amd64.iso</code
+                            >sha256sum FluxLinux-1.5-64bit.iso</code
                         >
                         <a
-                            href="/os/download/fluxlinux-1.4-64bit.md5"
+                            href="/os/download/fluxlinux-1.5-64bit.md5"
                             class="text-primary hover:underline mt-2 inline-block"
                             >Download Signature</a
                         >
@@ -141,7 +165,7 @@ import Layout from "../../../layouts/Layout.astro";
 
                             <button
                                 id="download-btn"
-                                data-href="https://download.fluxlinux.xyz/fluxlinux-1.4-amd64.iso"
+                                data-href="https://download.fluxlinux.xyz/fluxlinux-1.5-64bit.iso"
                                 class="mt-10 block w-full rounded-md bg-primary px-8 py-4 text-center text-xl font-bold text-white shadow-lg hover:bg-primary-hover hover:shadow-xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary transition-all transform hover:-translate-y-1"
                                 >Download ISO</button
                             >
@@ -209,13 +233,13 @@ import Layout from "../../../layouts/Layout.astro";
 <script>
     const downloadBtn = document.getElementById("download-btn");
     const modal = document.getElementById(
-        "newsletter-modal"
+        "newsletter-modal",
     ) as HTMLDialogElement;
     const closeBtn = document.getElementById("close-modal");
     const skipBtn = document.getElementById("skip-btn");
     const subscribeBtn = document.getElementById("subscribe-btn");
     const emailInput = document.getElementById(
-        "newsletter-email"
+        "newsletter-email",
     ) as HTMLInputElement;
 
     let targetUrl = "";
